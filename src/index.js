@@ -51,7 +51,7 @@ addNewBtn.addEventListener('click', () => {
   }
 });
 
-const clrBtn = document.getElementById('clear-all');
+const clrBtn = document.getElementById('remove-all');
 clrBtn.addEventListener('click', () => {
   for (let i = 0; i < listArr.length; i += 1) {
     if (listArr[i].completed) {

@@ -515,7 +515,7 @@ function checkComplete(arr) {
   for (let i = 0; i < arr.length; i += 1) {
     arr[i].completed = checkboxes[i].checked;
   }
-  localStorage.setItem('toDoList', JSON.stringify(arr));
+  localStorage.setItem('todayList', JSON.stringify(arr));
 }
 
 /***/ }),
@@ -558,7 +558,8 @@ function genHTML(list, arr) {
     if (checkbox.checked) {
       desc.classList.add('done');
     }
-    itemIcon.classList.add('fa-solid', 'fa-ellipsis-v', 'item-icon');
+    itemIcon.classList.add('fa', 'fa-times', 'item');
+    itemIcon.setAttribute('id', 'item-icon');
 
     itemIcon.addEventListener('click', () => {
       if (itemIcon.classList.contains('red')) {
@@ -568,7 +569,7 @@ function genHTML(list, arr) {
             item.index -= 1;
           }
         });
-        localStorage.setItem('toDoList', JSON.stringify(arr));
+        localStorage.setItem('todayList', JSON.stringify(arr));
         list.innerHTML = '';
         genHTML(list, arr);
       }
@@ -587,7 +588,7 @@ function genHTML(list, arr) {
     });
     desc.addEventListener('blur', () => {
       arr[i].description = desc.innerHTML;
-      localStorage.setItem('toDoList', JSON.stringify(arr));
+      localStorage.setItem('todayList', JSON.stringify(arr));
       setTimeout(() => {
         desc.parentElement.parentElement.classList.remove('bisque-bkg');
         desc.parentElement.nextElementSibling.classList.remove('red');
@@ -620,7 +621,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 function remove(num, list) {
   list.splice(num, 1);
-  localStorage.setItem('toDoList', JSON.stringify(list));
+  localStorage.setItem('todayList', JSON.stringify(list));
 }
 
 /***/ })
@@ -712,8 +713,8 @@ let listArr = [];
 const list = document.getElementById('list');
 
 const reload = () => {
-  if (localStorage.getItem('toDoList')) {
-    const oldStorage = localStorage.getItem('toDoList');
+  if (localStorage.getItem('todayList')) {
+    const oldStorage = localStorage.getItem('todayList');
     const newStorage = JSON.parse(oldStorage);
     list.innerHTML = '';
     listArr = newStorage;
@@ -728,7 +729,7 @@ const reload = () => {
     ];
     const newStorage = JSON.stringify(defaultItem);
     listArr = defaultItem;
-    localStorage.setItem('toDoList', newStorage);
+    localStorage.setItem('todayList', newStorage);
     list.innerHTML = '';
     (0,_gen_html__WEBPACK_IMPORTED_MODULE_0__.default)(list, JSON.parse(newStorage));
   }
@@ -748,7 +749,7 @@ addNewBtn.addEventListener('click', () => {
   if (task.value.length > 0) {
     listArr.push((0,_add_new__WEBPACK_IMPORTED_MODULE_1__.default)(task.value, listArr.length + 1));
     const newStorage = JSON.stringify(listArr);
-    localStorage.setItem('toDoList', newStorage);
+    localStorage.setItem('todayList', newStorage);
     task.value = '';
     reload();
   } else {
@@ -756,7 +757,7 @@ addNewBtn.addEventListener('click', () => {
   }
 });
 
-const clrBtn = document.getElementById('clear-all');
+const clrBtn = document.getElementById('remove-all');
 clrBtn.addEventListener('click', () => {
   for (let i = 0; i < listArr.length; i += 1) {
     if (listArr[i].completed) {
@@ -769,7 +770,7 @@ clrBtn.addEventListener('click', () => {
       i -= 1;
     }
   }
-  localStorage.setItem('toDoList', JSON.stringify(listArr));
+  localStorage.setItem('todayList', JSON.stringify(listArr));
   reload();
 });
 })();
