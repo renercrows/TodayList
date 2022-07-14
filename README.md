@@ -30,6 +30,8 @@
 - HTML
 - CSS
 - JS
+- Webpack
+- DOM
 
 
 ## Getting Started
