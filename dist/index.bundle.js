@@ -707,7 +707,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
+// Add and delete button
 let listArr = [];
 
 const list = document.getElementById('list');
