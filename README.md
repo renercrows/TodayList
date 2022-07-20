@@ -14,7 +14,7 @@
 * Download the folder and click on index.html
 
 # Live Demo
-* [Link to the Demo]
+* https://renercrows.github.io/TodayList/dist/
 
 # AUTHORS
 
